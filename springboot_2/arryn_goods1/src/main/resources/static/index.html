@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+    function registerMC(){
+         var magicCubeName=$('#magicCubeName').val();
+
+         var price=$('#price').val();
+
+
+        $.ajax({
+            type:"POST",
+            url:"/register",
+            dataType:"json",
+            data:{
+                magicCubeName:magicCubeName,
+                price:price,
+                },
+            success:function(data){
+                if(data.status=="exist"){
+                    alert("用户已存在")
+                }else if(data.status=="ok"){
+                    alert("注册成功")
+                    }
+                else{
+                    alert("注册失败")
+                }
+            },
+            error: function(jqXHR){
+                alert("发生错误"+   jqXHR.status)
+            }
+        });
+    }
+
+     function sel(){
+        var magicCubeName=$('#querymagicCubeName').val()
+        console.log('select name is'+magicCubeName);
+
+
+        $.ajax({
+            type:"GET",
+            url:"/sel",
+            dataType:"json",
+            data:{
+                magicCubeName:magicCubeName,
+                },
+            success:function(data){
+                if(data.status=="exist"){
+                    alert("magicCube存在。")
+                }else if(data.status=="null"){
+                    alert("magicCube不存在")
+                    }
+                else{
+                    alert("查询失败")
+                }
+            },
+            error:function(jqXHR){
+                alert("发生错误"+   jqXHR.status)
+            }
+        });
+    }
+
+    function update(){
+        var magicCubeName=$('#querymagicCubeName').val();
+        var price=$('#newprice').val();
+        console.log('login name is'+magicCubeName)
+        $.ajax({
+            type:"POST",
+            url:"/update",
+            dataType:"json",
+            data:{
+                magicCubeName:magicCubeName,
+                price:price},
+
+            success:function(data){
+                if(data.status=="no exist"){
+                    alert("不存在")
+                }else if(data.status=="ok"){
+                    alert("修改成功")
+                }else{
+                    alert("修改失败")
+                    console.log('fail')
+                    }
+            },
+            error:function(jqXHR){
+                alert("发生错误"+   jqXHR.status)
+            }
+        });
+    }
+
+    function del(){
+        var magicCubeName=$('#delmagicCubeName').val();
+
+        console.log('delete name is ：'+magicCubeName)
+
+        $.ajax({
+            type:"DELETE",
+            url:"/dell",
+            dataType:"json",
+            data:{
+                magicCubeName:magicCubeName,
+                },
+            success:function(data){
+                if(data.status=="ok"){
+                    alert("删除成功。")
+                }else if(data.status=="no exist"){
+                    alert("用户不存在")
+                    console.log('fail')
+                }else{
+                    alert("删除失败")
+                }
+
+            },
+            error:function(jqXHR){
+                alert("发生错误"+   jqXHR.status)
+            }
+        });
+    }
+
+    </script>
+
+
+    <title>holle</title>
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+magicCubeName: <input id="magicCubeName">
+price: <input id="price">
+<button onclick="registerMC()">添加magicCube</button>
+<br>
+
+magicCubeName: <input id="querymagicCubeName">
+<button onclick="sel()">查询magicCube</button>
+price:<input id="newprice">
+<button onclick="update()">修改price</button>
+<br>
+magicCubeName: <input id="delmagicCubeName">
+<button onclick="del()">删除magicCube</button>
+
+
+</body>
+</html>

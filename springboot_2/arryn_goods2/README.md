@@ -1,0 +1,3 @@
+# arryn_goods1
+将controller层中的方法移动到server层中
+实现商品的信息注册

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="espoir" id="T100-20190527-1">
+        <createTable tableName="magicCube">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"  />
+            </column>
+            <column name="MagicCubeName" type="VARCHAR(50)"/>
+            <column name="price" type="BIGINT(20)"/>
+            <column name="createTime" type="VARCHAR(50)"/>
+            <column name="updateTime" type="VARCHAR(50)"/>
+            <column name="updateUserId" type="BIGINT(20)"/>
+            <column name="createUserId" type="BIGINT(20)"/>
+            <column name="deleteFlag" type="SMALLINT"/>
+
+        </createTable>
+    </changeSet>
+    <changeSet id="T100-20190526-2" author="Espoir">
+        <loadData tableName="magicCube" file="db/liquibase/0.0.2-SNAPSHOT/elec_user.csv">
+            <column name="MagicCubeName" type="STRING"/>
+            <column name="price" type="NUMERIC"/>
+            <column name="createTime" type="STRING"/>
+            <column name="updateTime" type="STRING"/>
+            <column name="updateUserId" type="NUMERIC"/>
+            <column name="createUserId" type="NUMERIC"/>
+            <column name="deleteFlag" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
