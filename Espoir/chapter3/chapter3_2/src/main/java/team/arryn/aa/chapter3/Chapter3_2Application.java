@@ -1,0 +1,12 @@
+package team.arryn.aa.chapter3;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class Chapter3_2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Chapter3_2Application.class, args);
+	}
+
+}
